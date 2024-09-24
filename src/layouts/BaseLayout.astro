@@ -1,0 +1,29 @@
+---
+import Header from "../components/header.astro";
+import "bootstrap/dist/css/bootstrap.css";
+import "../styles/global.css";
+import Footer from "../components/footer.astro";
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<title>ULC</title>
+	</head>
+	<body>
+		<div class="body-container d-flex flex-column" id="body-container">
+			<Header />
+			<slot />
+			<Footer />
+		</div>
+		<script is:inline src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+	<!-- <div class="copyright text-white">
+		<p>&copy; Saugat Adhikari. All rights reserved.</p>
+	</div> -->
+</html>

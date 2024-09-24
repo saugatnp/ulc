@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { readFile } from "fs/promises";
+import ProjectCard from "../components/project-card.astro";
+import ProductsCard from "../components/products-card.astro";
+
+const ProductsDataPath = new URL(
+    "../../public/assets/jsondata/products.json",
+    import.meta.url,
+);
+const ProductsDataBuffer = await readFile(ProductsDataPath);
+const ProductsData: Array<IProductsData> = JSON.parse(
+    ProductsDataBuffer.toString(),
+) as Array<IProductsData>;
+
+export interface IProductsData {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    details: string;
+}
+---
+
+<BaseLayout>
+    <div class="row">
+        <div class="text-block-container">
+            <h1 class="text-block-h2">OUR PRODUCTS</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-lg-8 offset-lg-2">
+                <div class="row d-flex justify-content-around">
+                    {
+                        ProductsData.map((data : IProductsData) => {
+                            return (
+                                <>
+                                    <ProductsCard data={data} />
+                                </>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</BaseLayout>

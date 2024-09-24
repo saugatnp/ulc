@@ -1,0 +1,51 @@
+---
+import { readFile } from "fs/promises";
+import ProjectCard from "../components/project-card.astro";
+
+const ProjectsDataPath = new URL(
+    "../../public/assets/jsondata/projects.json",
+    import.meta.url,
+);
+const ProjectsDataBuffer = await readFile(ProjectsDataPath);
+const ProjectsData: Array<IProjectsData> = JSON.parse(
+    ProjectsDataBuffer.toString(),
+) as Array<IProjectsData>;
+
+export interface IProjectsData {
+    id: number;
+    banner_img: string;
+    project_name: string;
+    slogan: string;
+    details: string;
+    images: string[];
+    tech_stack: string[];
+}
+---
+
+<div class="row d-flex justify-content-center">
+    <p class="text-center fs-3 w-auto primary-border circular-border-md primary-text">
+        MY&nbsp;PROJECTS
+    </p>
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8 p-0">
+                <div class="row m-0 p-0 d-flex justify-content-around">
+                    {
+                        ProjectsData.map((data: IProjectsData) => {
+                            return (
+                                <>
+                                    <ProjectCard data={data} />
+                                </>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-sm-1 offset-3">
+            <p class="index-scroll text-center" style="margin-top:0">S&nbsp;C&nbsp;R&nbsp;O&nbsp;L&nbsp;L</p>         
+        </div>
+    </div>
+</div>

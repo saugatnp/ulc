@@ -1,0 +1,17 @@
+---
+const { data } = Astro.props;
+---
+<div class="card col-lg-3 col-sm-12">
+    <img
+        src={"/assets/images/products/" + data.image}
+        class="card-img-top"
+        alt="..."
+    />
+    <div class="card-body">
+        <h5 class="card-title">{data.name}</h5>
+        <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti similique aliquam aut atque. Neque commodi quasi voluptatibus in ipsa voluptate, tenetur deleniti quis pariatur ratione eum debitis. Illum, omnis illo.
+        </p>
+        <a href={"/product-details/" + data.name} class="btn btn-primary">View Details</a>
+    </div>
+</div>

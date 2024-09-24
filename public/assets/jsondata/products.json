@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Product 1",
+        "price": 100,
+        "image": "product1.jpg",
+        "details": "Technical Specification\nMachine Dimension in mm\n(Length x Width x Height)\t763*450*892\nPacked Dimension in mm\n(Length x Width x Height)\t790*465*935\nMachine Weight in kg\t20.0kg\nGross Weight in kg\t23.0kg\nPower Supply\t110V,\n        220-240V/50Hz,\n        60Hz\nWash Capacity Kgs\t9.0kg\nWash Input Power \t360W\nWash Motor Power\t170W\nWash Motor Material\tAluminium\nBody material\tPP\ncontrol panel materials\tABS\nWater level L\tLow - 38 Mid-47 High- 57\nSpin Capacity\t5.0KG\nSpin Input Power\t170W\nSpin Motor power (W)\t60W\nSpin Motor material\tAluminium\nWash time (mins)\t15\nSpin time (mins)\t5\nWash Timer\tMechanical\nSpin Timer\tMechanical\nConfiguration (Single Layer or 2 Layer)\tSingle\nBottom base (High raised or Low Underbase)\tHigh\nBottom base materials\tPP\nAesthetics\t\nWindow (Transparent or Opaque)\tTransparent ABS\nWash Lid (Hinged or Free)\tFREE Hinged\nSpin Lid\tHinged\nNumber of Knobs\t3\nCB certificate\tYes\nQTY PCS(40 HQ)\t210\n"
+    },
+    {
+        "id": 2,
+        "name": "32 inch Smart TV",
+        "price": 200,
+        "image": "32inchSmartTv.png",
+        "details": "<ul><li>A+ Grade Panel</li><li>Original Netflix for tv</li><li>Inbuilt Woofer (Dolby surround)</li><li>20W speakers Dolby™</li><li>Ultra wide Viewing Angle nearly 180 degrees</li><li>1GB RAM, 8GB ROM</li><li>Antenna In</li><li>HDMI: 3, USB: 2</li><li>Up to 4K Video Support</li></ul>"
+    },
+    {
+        "id": 3,
+        "name": "42 inch Smart TV",
+        "price": 300,
+        "image": "42inchSmartTv.png",
+        "details": "<ul><li>4K HDR 10-bit display with WCG</li><li>20W speakers Dolby™+ DTS-HD®</li><li>Android TV™ + Google Assistant, Data Saver</li><li>Powerful 64-bit Quad-core Processor</li><li>1GB RAM / 8GB Storage</li><li>Audio: 20 W, Stereo Sound</li><li>HDMI: 3, USB: 2</li><li>Refresh Rate: 60 Hz</li></ul>"
+    },
+    {
+        "id": 4,
+        "name": "AC one Ton",
+        "price": 400,
+        "image": "acOneTon.png",
+        "details": "<ul><li>4K HDR 10-bit display with WCG</li><li>20W speakers Dolby™+ DTS-HD®</li><li>Android TV™ + Google Assistant, Data Saver</li><li>Powerful 64-bit Quad-core Processor</li><li>1GB RAM / 8GB Storage</li><li>Audio: 20 W, Stereo Sound</li><li>HDMI: 3, USB: 2</li><li>Refresh Rate: 60 Hz</li></ul>"
+    }
+]

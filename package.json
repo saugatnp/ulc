@@ -1,0 +1,25 @@
+{
+  "name": "mad-motion",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@popperjs/core": "^2.11.8",
+    "@types/bootstrap": "^5.2.10",
+    "astro": "^4.9.1",
+    "astro-icon": "^1.1.0",
+    "bootstrap": "^5.3.3",
+    "node-fetch": "^3.3.2",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.66"
+  }
+}

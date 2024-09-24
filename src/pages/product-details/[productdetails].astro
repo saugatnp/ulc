@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { readFile, writeFile } from "fs/promises";
+import { promises as fs } from "fs";
+import path from "path";
+import type { IProductsData } from "../index.astro";
+const ProductsDataPath = path.join(
+    process.cwd(),
+    "public/assets/jsondata",
+    "Products.json",
+);
+const ProductsDataBuffer = await readFile(ProductsDataPath);
+const ProductsData: Array<IProductsData> = JSON.parse(
+    ProductsDataBuffer.toString(),
+) as Array<IProductsData>;
+
+export async function getStaticPaths() {
+    const filePath = path.join(
+        process.cwd(),
+        "public/assets/jsondata",
+        "Products.json",
+    );
+
+    try {
+        const fileContent = await fs.readFile(filePath, "utf-8");
+        const ProductsData = JSON.parse(fileContent.toString());
+        const paths = ProductsData.map((product: IProductsData) => ({
+            params: { productdetails: product.name.toString() },
+        }));
+        return paths;
+    } catch (error) {
+        console.error("Error reading Products.json file:", error);
+        throw new Error("Failed to read Products data");
+    }
+}
+
+const { productdetails } = Astro.params;
+const product = ProductsData.find((p) => p.name.toString() === productdetails);
+---
+
+<BaseLayout>
+    <div class="row" style="margin-top:10vh">
+        <div class="col-sm-12 col-lg-8 offset-lg-2">
+            <div class="row">
+                <div class="col-sm-12 col-lg-6">
+                    <img
+                        src={"/assets/images/products/" + product?.image}
+                        alt={product?.name}
+                        class="img-fluid"
+                    />
+                </div>
+                <div class="col-sm-12 col-lg-6" style="color:black">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>{product?.name}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" set:html={product?.details}>
+                           
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Price: {product?.price}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</BaseLayout>

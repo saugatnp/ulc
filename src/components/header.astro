@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+const currentPath = Astro.url.pathname;
+
+---
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #7600E3;color:white">
+        <div class="container-fluid">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul
+                    class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-center"
+                >
+                    <a class="navbar-brand" href="/"><img src="/assets/images/ULC-White.png" alt="Logo" width="90"></a>
+                    <li class="nav-item">
+                        <a class={`nav-link ${currentPath === '/' ? 'active' : ''}`} aria-current="page" href="/"
+                            >Home</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class={`nav-link ${currentPath === '/products' ? 'active' : ''}`} aria-current="page" href="/products"
+                            >Our Products</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class={`nav-link ${currentPath === '/about' ? 'active' : ''}`} aria-current="page" href="/about"
+                            >About Us</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class={`nav-link ${currentPath === '/contact' ? 'active' : ''}`} aria-current="page" href="#"
+                            >Contact Us</a
+                        >
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
