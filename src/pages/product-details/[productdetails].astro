@@ -39,6 +39,7 @@ const product = ProductsData.find((p) => p.name.toString() === productdetails);
 ---
 
 <BaseLayout>
+    
     <div class="row" style="margin-top:10vh">
         <div class="col-sm-12 col-lg-8 offset-lg-2">
             <div class="row">
@@ -55,14 +56,14 @@ const product = ProductsData.find((p) => p.name.toString() === productdetails);
                             <h1>{product?.name}</h1>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12" set:html={product?.details}>
+                    <div class="row ">
+                        <div class="col-12 details" set:html={product?.details}>
                            
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
-                            <p>Price: {product?.price}</p>
+                        <div class="col-12" style="margin-top:5vh">
+                            <h3>Rs. {product?.price}</h3>
                         </div>
                     </div>
                 </div>
