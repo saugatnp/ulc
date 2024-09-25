@@ -3,20 +3,20 @@ import ProductsCard from "../components/products-card.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { readFile } from "fs/promises";
 const ProductsDataPath = new URL(
-    "../../public/assets/jsondata/products.json",
-    import.meta.url,
+	"../../public/assets/jsondata/products.json",
+	import.meta.url,
 );
 const ProductsDataBuffer = await readFile(ProductsDataPath);
 const ProductsData: Array<IProductsData> = JSON.parse(
-    ProductsDataBuffer.toString(),
+	ProductsDataBuffer.toString(),
 ) as Array<IProductsData>;
 
 export interface IProductsData {
-    id: number;
-    name: string;
-    price: number;
-    image: string;
-    details: string;
+	id: number;
+	name: string;
+	price: number;
+	image: string;
+	details: string;
 }
 ---
 
@@ -114,55 +114,78 @@ export interface IProductsData {
 			</div>
 		</div>
 
-		<div class="text-block-container">
-			<h1 class="text-block-h2">
-				HOME APPLIANCES THAT RESONATES WITH YOU
-			</h1>
-		</div>
+		<div class="row">
+			<div class="col-sm-12 col-lg-8 offset-lg-2">
+				<div class="row">
+					<div class="col-sm-12 col-lg-8">
+						<div class="text-block-container">
+							<h6 class="text-block-h6">Trustable Brand</h6>
+						</div>
 
-		<div class="text-message-container">
-			<p class="text-message">
-				Nestled amisdt the Himalayas, ULC draws inspiration from Nepal's
-				rich tapestry of tradition and innovation. In the shadow of
-				majestic peaks and amidst the vibrant pulse of Nepalese life, we
-				embarked on a journey to craft home appliances that resonated
-				with the essence of our homeland.
-			</p>
-		</div>
+						<div class="text-block-container mt-1 mx-sm-2 mx-lg-0">
+							<h1 class="text-block-h2">
+								HOME APPLIANCES THAT RESONATES WITH YOU
+							</h1>
+						</div>
 
-		<div
-			class="text-button d-flex justify-content-center align-items-center"
-		>
-			<a href="/about" class="text-button-link">Learn More</a>
-		</div>
-
-		<div class="text-block-container" style="margin-top:20vh">
-			<h1 class="text-block-h2">OUR PRODUCTS</h1>
-		</div>
-		
-
-		<div class="card-crousel">
-			<div class="cards-wrapper row">
-				{
-					ProductsData.slice(0, 3).map((data : IProductsData) => {
-						return (
-							<>
-								<ProductsCard data={data} />
-							</>
-						);
-					})
-				}
+						<div class="text-message-container">
+							<p class="text-message">
+								Nestled amisdt the Himalayas, ULC draws
+								inspiration from Nepal's rich tapestry of
+								tradition and innovation. In the shadow of
+								majestic peaks and amidst the vibrant pulse of
+								Nepalese life, we embarked on a journey to craft
+								home appliances that resonated with the essence
+								of our homeland.
+							</p>
+						</div>
+						<div class="text-button d-flex justify-content-center align-items-center">
+							<a href="/about" class="text-button-link">Learn More</a>
+						</div>
+					</div>
+					<div class="col-sm-12 col-lg-3 d-flex justify-content-end">
+						<img
+							src="/assets/images/products/allProducts.png"
+							class="img-fluid all-products-img"
+							alt="..."
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 
-
-		<div
-			class="text-button d-flex justify-content-center align-items-center"
-		>
-			<a href="/products" class="text-button-link">View More Products</a>
+		<div class="row home-products">
+			<div class="col-sm-12 col-lg-10 offset-lg-1">
+				<div class="">
+					<div class="text-block-container">
+						<h1 class="text-block-h2" style="text-align: center;">OUR PRODUCTS</h1>
+					</div>
+		
+					<div class="card-crousel">
+						<div class="cards-wrapper row">
+							{
+								ProductsData.slice(0, 3).map((data: IProductsData) => {
+									return (
+										<>
+											<ProductsCard data={data} />
+										</>
+									);
+								})
+							}
+						</div>
+					</div>
+		
+					<div
+						class="text-button d-flex justify-content-center align-items-center"
+					>
+						<a href="/products" class="text-button-link"
+							>View More Products</a
+						>
+					</div>
+				</div>
+			</div>
 		</div>
 
-
-
+		<!-- #F8F8F8 -->
 	</div>
 </BaseLayout>

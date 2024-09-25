@@ -67,7 +67,7 @@ header {
     width: 70vw !important;
     height: 65vh !important;
     object-fit: cover;
-
+    border-radius: 10px;
 }
 
 .carousel-inner .carousel-item {
@@ -77,31 +77,36 @@ header {
 }
 
 .text-block-container {
-    margin-top: 80px !important;
+    margin-top: 80px;
 }
 
 .text-block-container .text-block-h2 {
-    text-align: center;
+    text-align: left;
     color: var(--primary-color-one);
     font-family: 'SamsungSharpSans', arial, sans-serif;
     font-weight: 500;
     margin-bottom: 1em;
 }
 
+.text-block-container .text-block-h6 {
+    text-align: left;
+    color: #696E77;
+    font-family: 'SamsungSharpSans', arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
 .text-message-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 0 2rem;
+    align-items: left;
 }
 
 .text-message-container .text-message {
-    color: black;
+    color: #696E77;
     font-family: 'SamsungSharpSans', arial, sans-serif;
-    text-align: center;
-    width: 60%;
+    text-align: left;
     font-weight: 500;
-    padding: 2rem 0;
 }
 .active{
     border-radius: 2px !important;
@@ -109,12 +114,26 @@ header {
 }
 
 .text-button-link {
-    border: 1px solid var(--primary-color-one);
+    background-color:  var(--primary-color-one);
     padding: 0.5em 1em;
-    color: var(--primary-color-one);
+    color: white;
     font-weight: 700;
     margin: 1em 0;
     text-decoration: none;
+    border-radius: 10px;
+}
+.home-products{
+    margin-top:5vh;
+    padding:5vh 0;
+    background-color: #F8F8F8;
+}
+.all-products-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin:50px 0px;
+    padding:10px;
+    border-radius: 50px;
 }
 
 @media screen and (max-width: 768px) {
@@ -154,6 +173,7 @@ header {
 .cards-wrapper {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .card img {
@@ -182,11 +202,19 @@ header {
     }
 
     .card-crousel .cards-wrapper {
-        width: 60vw;
+        /* width: 60vw; */
     }
 }
+.btn-primary{
+    border: 1px solid var(--primary-color-one) !important;
+    background-color: white !important;
+    color: var(--primary-color-one) !important;
+    padding: 0.5em 1em;
+    font-weight: 700;
+    border-radius: 5px;
+    margin: 1em 0;
+}
 footer{
-    margin-top:10vh;
     background-color: var(--primary-color-one);
     color: white;
     padding: 4em 5em 1em 5em;
