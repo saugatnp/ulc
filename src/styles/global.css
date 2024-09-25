@@ -142,6 +142,9 @@ header {
         list-style-type: none;
         padding:0;
     }
+    .details table{
+        font-size: 0.5em !important;
+    }
 }
 
 .card-crousel{
@@ -205,18 +208,15 @@ footer{
 .details table{
     width: 100% !important;
 }
-table, th, td {
-    border: 1px solid black; /* Sets the border style */
-    border-collapse: collapse; /* Collapses the borders */
-}
+
 th, td {
-    padding: 8px; /* Adds some padding for better readability */
+    padding: 0.5em; 
 }
 table {
-    border-collapse:separate /* Merge table borders into single lines */
+    border-collapse:separate 
 }
 
 table, th, td , tr {
-    border-width: 1px !important; /* Set border width */
-    border: 1px solid black; /* Make sure borders are applied to table, headers, and cells */
+    border-width: 1px !important; 
+    border: 1px solid black; 
 }
