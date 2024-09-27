@@ -150,8 +150,12 @@ header {
         height: auto;
         padding: 5vh 0;
     }
+    .card-crousel{
+        display: flex;
+        justify-content: center;
+    }
     .cards-wrapper {
-        margin: 0 20px !important;
+        padding: 0 20px !important;
     }
     footer div div{
         align-items: center !important;
