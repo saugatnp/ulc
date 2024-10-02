@@ -16,6 +16,7 @@
     "astro": "^4.9.1",
     "astro-icon": "^1.1.0",
     "bootstrap": "^5.3.3",
+    "graphql-request": "^7.1.0",
     "node-fetch": "^3.3.2",
     "typescript": "^5.4.5"
   },

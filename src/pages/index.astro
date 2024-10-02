@@ -2,6 +2,32 @@
 import ProductsCard from "../components/products-card.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { readFile } from "fs/promises";
+import { GraphQLClient } from "graphql-request";
+
+// Create a new GraphQL client with the Hygraph endpoint
+const client = new GraphQLClient(
+	import.meta.env.ASTRO_HYGRAPH_ENDPOINT,
+);
+
+// Fetch the data via the GraphQL query
+const { products: assets } = await client.request<{
+	products: Array<{
+		product_id: string;
+		name: string;
+		price: number;
+		details: string;
+	}>;
+}>(`
+  query Products {
+	products {
+		product_id
+		name
+		price
+		details
+	}
+}
+`);
+
 const ProductsDataPath = new URL(
 	"../../public/assets/jsondata/products.json",
 	import.meta.url,
@@ -114,6 +140,17 @@ export interface IProductsData {
 			</div>
 		</div>
 
+		<h1 style="color: black;">Assets from Hygraph</h1>
+		<ul style="color: black;">
+			{
+				assets.map((asset: any) => (
+					<li>
+						{asset.name}
+					</li>
+				))
+			}
+		</ul>
+
 		<div class="row">
 			<div class="col-sm-12 col-lg-8 offset-lg-2">
 				<div class="row">
@@ -139,8 +176,12 @@ export interface IProductsData {
 								of our homeland.
 							</p>
 						</div>
-						<div class="text-button d-flex justify-content-center align-items-center">
-							<a href="/about" class="text-button-link">Learn More</a>
+						<div
+							class="text-button d-flex justify-content-center align-items-center"
+						>
+							<a href="/about" class="text-button-link"
+								>Learn More</a
+							>
 						</div>
 					</div>
 					<div class="col-sm-12 col-lg-3 d-flex justify-content-end">
@@ -158,23 +199,27 @@ export interface IProductsData {
 			<div class="col-sm-12 col-lg-10 offset-lg-1">
 				<div class="">
 					<div class="text-block-container">
-						<h1 class="text-block-h2" style="text-align: center;">OUR PRODUCTS</h1>
+						<h1 class="text-block-h2" style="text-align: center;">
+							OUR PRODUCTS
+						</h1>
 					</div>
-		
+
 					<div class="card-crousel">
 						<div class="cards-wrapper row">
 							{
-								ProductsData.slice(0, 3).map((data: IProductsData) => {
-									return (
-										<>
-											<ProductsCard data={data} />
-										</>
-									);
-								})
+								ProductsData.slice(0, 3).map(
+									(data: IProductsData) => {
+										return (
+											<>
+												<ProductsCard data={data} />
+											</>
+										);
+									},
+								)
 							}
 						</div>
 					</div>
-		
+
 					<div
 						class="text-button d-flex justify-content-center align-items-center"
 					>
