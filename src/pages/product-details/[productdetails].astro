@@ -4,15 +4,33 @@ import { readFile } from "fs/promises";
 import { promises as fs } from "fs";
 import path from "path";
 import type { IProductsData } from "../index.astro";
-const ProductsDataPath = path.join(
-    process.cwd(),
-    "public/assets/jsondata",
-    "products.json",
-);
-const ProductsDataBuffer = await readFile(ProductsDataPath);
-const ProductsData: Array<IProductsData> = JSON.parse(
-    ProductsDataBuffer.toString(),
-) as Array<IProductsData>;
+import { GraphQLClient } from "graphql-request";
+const { productdetails } = Astro.params;
+
+
+// Create a new GraphQL client with the Hygraph endpoint
+const client = new GraphQLClient(import.meta.env.ASTRO_HYGRAPH_ENDPOINT);
+
+// Fetch the data via the GraphQL query
+const { products: assets }: { products: Array<IProductsData> } = await client.request<{
+  products: Array<IProductsData>;
+}>(`
+  query Products($name: String!) {
+    products(where: { name: $name }) {
+      product_id
+      name
+      price
+      details
+      image {
+        url
+      }
+    }
+  }
+`, {
+  name: productdetails 
+});
+
+
 
 export async function getStaticPaths() {
     const filePath = path.join(
@@ -34,36 +52,35 @@ export async function getStaticPaths() {
     }
 }
 
-const { productdetails } = Astro.params;
-const product = ProductsData.find((p) => p.name.toString() === productdetails);
 ---
 
 <BaseLayout>
+
     
     <div class="row mx-4 mx-lg-0" style="margin-top:10vh">
         <div class="col-sm-12 col-lg-8 offset-lg-2">
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
                     <img
-                        src={"/assets/images/products/" + product?.image}
-                        alt={product?.name}
+                        src={assets[0]?.image.url}
+                        alt={assets[0]?.name}
                         class="img-fluid"
                     />
                 </div>
                 <div class="col-sm-12 col-lg-6" style="color:black">
                     <div class="row">
                         <div class="col-12">
-                            <h1>{product?.name}</h1>
+                            <h1>{assets[0]?.name}</h1>
                         </div>
                     </div>
                     <div class="row ">
-                        <div class="col-12 details" set:html={product?.details}>
+                        <div class="col-12 details" set:html={assets[0]?.details}>
                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12" style="margin-top:5vh">
-                            <h3>Rs. {product?.price}</h3>
+                            <h3>Rs. {assets[0]?.price}</h3>
                         </div>
                     </div>
                 </div>

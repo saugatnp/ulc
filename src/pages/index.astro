@@ -5,44 +5,32 @@ import { readFile } from "fs/promises";
 import { GraphQLClient } from "graphql-request";
 
 // Create a new GraphQL client with the Hygraph endpoint
-const client = new GraphQLClient(
-	import.meta.env.ASTRO_HYGRAPH_ENDPOINT,
-);
+const client = new GraphQLClient(import.meta.env.ASTRO_HYGRAPH_ENDPOINT);
 
 // Fetch the data via the GraphQL query
-const { products: assets } = await client.request<{
-	products: Array<{
-		product_id: string;
-		name: string;
-		price: number;
-		details: string;
-	}>;
-}>(`
+const { products: assets }: { products: Array<IProductsData> } =
+	await client.request<{
+		products: Array<IProductsData>;
+	}>(`
   query Products {
 	products {
 		product_id
 		name
 		price
-		details
+		image {
+			url
+		}
 	}
 }
 `);
 
-const ProductsDataPath = new URL(
-	"../../public/assets/jsondata/products.json",
-	import.meta.url,
-);
-const ProductsDataBuffer = await readFile(ProductsDataPath);
-const ProductsData: Array<IProductsData> = JSON.parse(
-	ProductsDataBuffer.toString(),
-) as Array<IProductsData>;
 
 export interface IProductsData {
-	id: number;
-	name: string;
-	price: number;
-	image: string;
-	details: string;
+	product_id: number;
+    name: string;
+    price: number;
+    details: string;
+    image: { url: string };
 }
 ---
 
@@ -140,16 +128,6 @@ export interface IProductsData {
 			</div>
 		</div>
 
-		<h1 style="color: black;">Assets from Hygraph</h1>
-		<ul style="color: black;">
-			{
-				assets.map((asset: any) => (
-					<li>
-						{asset.name}
-					</li>
-				))
-			}
-		</ul>
 
 		<div class="row">
 			<div class="col-sm-12 col-lg-8 offset-lg-2">
@@ -207,15 +185,15 @@ export interface IProductsData {
 					<div class="card-crousel">
 						<div class="cards-wrapper row">
 							{
-								ProductsData.slice(0, 3).map(
-									(data: IProductsData) => {
+								assets
+									.slice(0, 3)
+									.map((data: IProductsData) => {
 										return (
 											<>
 												<ProductsCard data={data} />
 											</>
 										);
-									},
-								)
+									})
 							}
 						</div>
 					</div>
